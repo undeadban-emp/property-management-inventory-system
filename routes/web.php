@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\User\UserDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,7 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -24,17 +25,5 @@ Auth::routes();
 // user route
 Route::middleware(['auth', 'user-role:user'])->group(function()
 {
-    Route::get("/home", [HomeController::class, 'userHome'])->name('home');
-});
-
-// admin route
-Route::middleware(['auth', 'user-role:admin'])->group(function()
-{
-    Route::get("/admin/home", [HomeController::class, 'adminHome'])->name('home.admin');
-});
-
-// superadmin route
-Route::middleware(['auth', 'user-role:superadmin'])->group(function()
-{
-    Route::get("/superadmin/home", [HomeController::class, 'superadminHome'])->name('home.superadmin');
+    Route::get("/dashboard", [UserDashboardController::class, 'index'])->name('user.dashboard');
 });

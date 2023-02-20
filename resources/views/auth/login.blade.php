@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -70,4 +70,85 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection --}}
+
+
+<!DOCTYPE html>
+<html lang="en"><meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Responsive Bootstrap 5 Admin &amp; Dashboard Template">
+	<meta name="author" content="Bootlab">
+	<title>Log In | Propert Management Inventory System</title>
+	<link rel="canonical" href="pages-sign-in.html" />
+	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="preconnect" href="https://fonts.googleapis.com/">
+	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&amp;display=swap" rel="stylesheet">
+	<link href="{{ asset('assets/css/light.css') }}" rel="stylesheet">
+</head>
+
+<body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
+	<div class="main d-flex justify-content-center w-100">
+		<main class="content d-flex p-0">
+			<div class="container d-flex flex-column">
+				<div class="row h-100">
+					<div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+						<div class="d-table-cell align-middle">
+
+							<div class="text-center mt-4">
+								<h1 class="h2">Welcome back, User</h1>
+								<p class="lead">
+									Sign in to your account to continue
+								</p>
+							</div>
+
+							<div class="card">
+								<div class="card-body">
+									<div class="m-sm-4">
+										<div class="text-center">
+											<img src="{{ asset('assets/img/avatars/avatar.jpg') }}" alt="Chris Wood" class="img-fluid rounded-circle" width="132" height="132" />
+										</div>
+										<form method="POST" action="{{ route('login') }}">
+                                            @csrf
+											<div class="mb-3">
+												<label class="form-label">Username</label>
+												<input class="form-control form-control-lg @error('username') is-invalid @enderror" type="text" name="username" value="{{ old('username') }}" placeholder="Enter your username" />
+                                                @error('username')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+
+											<div class="mb-3">
+												<label class="form-label">Password</label>
+												<input class="form-control form-control-lg @error('password') is-invalid @enderror" type="password" name="password" placeholder="Enter your password" />
+                                                @error('password')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+
+											<div class="text-center mt-3">
+                                                <button type="submit" class="btn btn-lg btn-primary">Sign in</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+
+	<script src="{{ asset('assets/js/app.js') }}"></script>
+
+</body>
+</html>
