@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
                 'phonenumber'=>'09565634097',
                 'email'=>'user@gmail.com',
                 'password'=>bcrypt('password'),
-                'role'=> 0
+                'role'=> 0,
+                'account_level' => 0
             ],
             [
                 'username'=>'admin',
@@ -34,7 +35,8 @@ class DatabaseSeeder extends Seeder
                 'phonenumber'=>'09565634097',
                 'email'=>'admin@gmail.com',
                 'password'=>bcrypt('password'),
-                'role'=> 1
+                'role'=> 0,
+                'account_level' => 1
             ],
             [
                 'username'=>'superadmin',
@@ -44,7 +46,8 @@ class DatabaseSeeder extends Seeder
                 'phonenumber'=>'09565634097',
                 'email'=>'superadmin@gmail.com',
                 'password'=>bcrypt('password'),
-                'role'=> 2
+                'role'=> 0,
+                'account_level' => 2
             ]
         ];
         foreach($user as $users)

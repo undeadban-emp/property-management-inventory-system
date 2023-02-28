@@ -1,4 +1,4 @@
-@extends('user.layouts.app')
+@extends('users.layouts.app')
 @section('title', 'Dashboard')
 @section('dashboard', 'active')
 @prepend('page-css')

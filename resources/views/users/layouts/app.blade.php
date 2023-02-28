@@ -19,15 +19,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&amp;display=swap" rel="stylesheet">
     @stack('page-css')
-	<!-- Choose your prefered color scheme -->
 	<link href="{{ asset('assets/css/light.css') }}" rel="stylesheet">
-	<!-- <link href="css/dark.css" rel="stylesheet"> -->
-
-	{{-- <!-- BEGIN SETTINGS -->
-	<!-- Remove this after purchasing -->
-	<link class="js-stylesheet" href="css/light.css" rel="stylesheet">
-	<script src="js/settings.js"></script>
-	<!-- END SETTINGS --> --}}
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3ZYEKLQ68"></script>
 </head>
 <body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
@@ -164,120 +156,23 @@
 					</li>
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="tables-bootstrap.html">
-              <i class="align-middle" data-feather="list"></i> <span class="align-middle">Tables</span>
-            </a>
+                            <i class="align-middle" data-feather="list"></i> <span class="align-middle">Tables</span>
+                        </a>
 					</li>
-
 					<li class="sidebar-header">
-						Plugins & Addons
+						Settings & Maintenance
 					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#form-plugins" data-bs-toggle="collapse" class="sidebar-link collapsed">
-              <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Form Plugins</span>
-            </a>
-						<ul id="form-plugins" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="forms-advanced-inputs.html">Advanced Inputs</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="forms-editors.html">Editors</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="forms-validation.html">Validation</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="forms-wizard.html">Wizard</a></li>
-						</ul>
+					<li class="sidebar-item @yield('classGroup')">
+						<a class="sidebar-link" href="{{ route('user.class-group') }}">
+                            <i class="align-middle" data-feather="bell"></i> <span class="align-middle">Class Group</span>
+                        </a>
 					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#datatables" data-bs-toggle="collapse" class="sidebar-link collapsed">
-              <i class="align-middle" data-feather="list"></i> <span class="align-middle">DataTables</span>
-            </a>
-						<ul id="datatables" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-responsive.html">Responsive Table</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-buttons.html">Table with Buttons</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-column-search.html">Column Search</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-fixed-header.html">Fixed Header</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-multi.html">Multi Selection</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="tables-datatables-ajax.html">Ajax Sourced Data</a></li>
-						</ul>
-					</li>
-
-					<li class="sidebar-item">
-						<a data-bs-target="#charts" data-bs-toggle="collapse" class="sidebar-link collapsed">
-              <i class="align-middle" data-feather="pie-chart"></i> <span class="align-middle">Charts</span>
-              <span class="badge badge-sidebar-primary">New</span>
-            </a>
-						<ul id="charts" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="charts-chartjs.html">Chart.js</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="charts-apexcharts.html">ApexCharts <span class="badge badge-sidebar-primary">New</span></a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="notifications.html">
-              <i class="align-middle" data-feather="bell"></i> <span class="align-middle">Notifications</span>
-            </a>
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#maps" data-bs-toggle="collapse" class="sidebar-link collapsed">
-              <i class="align-middle" data-feather="map-pin"></i> <span class="align-middle">Maps</span>
-            </a>
-						<ul id="maps" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="maps-google.html">Google Maps</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="maps-vector.html">Vector Maps</a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="calendar.html">
-              <i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Calendar</span>
-            </a>
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#multi" data-bs-toggle="collapse" class="sidebar-link collapsed">
-              <i class="align-middle" data-feather="share-2"></i> <span class="align-middle">Multi Level</span>
-            </a>
-						<ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-							<li class="sidebar-item">
-								<a data-bs-target="#multi-2" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                  Two Levels
-                </a>
-								<ul id="multi-2" class="sidebar-dropdown list-unstyled collapse">
-									<li class="sidebar-item">
-										<a class="sidebar-link" data-bs-target="#">Item 1</a>
-										<a class="sidebar-link" data-bs-target="#">Item 2</a>
-									</li>
-								</ul>
-							</li>
-							<li class="sidebar-item">
-								<a data-bs-target="#multi-3" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                  Three Levels
-                </a>
-								<ul id="multi-3" class="sidebar-dropdown list-unstyled collapse">
-									<li class="sidebar-item">
-										<a data-bs-target="#multi-3-1" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                      Item 1
-                    </a>
-										<ul id="multi-3-1" class="sidebar-dropdown list-unstyled collapse">
-											<li class="sidebar-item">
-												<a class="sidebar-link" data-bs-target="#">Item 1</a>
-												<a class="sidebar-link" data-bs-target="#">Item 2</a>
-											</li>
-										</ul>
-									</li>
-									<li class="sidebar-item">
-										<a class="sidebar-link" data-bs-target="#">Item 2</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
+                    <li class="sidebar-item">
+						<a class="sidebar-link" href="">
+                            <i class="align-middle" data-feather="bell"></i> <span class="align-middle">Classification</span>
+                        </a>
 					</li>
 				</ul>
-
-				<div class="sidebar-cta">
-					<div class="sidebar-cta-content">
-						<strong class="d-inline-block mb-2">Monthly Sales Report</strong>
-						<div class="mb-3 text-sm">
-							Your monthly sales report is ready for download!
-						</div>
-
-						<div class="d-grid">
-							<a href="https://themes.getbootstrap.com/product/appstack-responsive-admin-template/" class="btn btn-primary" target="_blank">Download</a>
-						</div>
-					</div>
-				</div>
 			</div>
 		</nav>
 		<div class="main">
@@ -352,6 +247,7 @@
 		</div>
 	</div>
 	<script src="{{ asset('assets/js/app.js') }}"></script>
+	<script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
     @stack('page-scripts')
 </body>
 </html>
