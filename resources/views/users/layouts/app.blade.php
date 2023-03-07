@@ -46,117 +46,17 @@
 					</li>
 					<li class="sidebar-item">
 						<a data-bs-target="#dashboards" data-bs-toggle="collapse" class="sidebar-link collapsed">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboards</span>
-              <span class="badge badge-sidebar-primary">5</span>
-            </a>
-						<ul id="dashboards" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="dashboard-default.html">Default</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="dashboard-analytics.html">Analytics</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="dashboard-saas.html">SaaS</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="dashboard-social.html">Social</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="dashboard-crypto.html">Crypto</a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item active">
-						<a data-bs-target="#pages" data-bs-toggle="collapse" class="sidebar-link">
-              <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Pages</span>
-            </a>
-						<ul id="pages" class="sidebar-dropdown list-unstyled collapse show" data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-profile.html">Profile</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-settings.html">Settings</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-clients.html">Clients</a></li>
-							<li class="sidebar-item">
-								<a data-bs-target="#projects" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                  Projects
-                </a>
-								<ul id="projects" class="sidebar-dropdown list-unstyled collapse ">
-									<li class="sidebar-item">
-										<a class="sidebar-link" href="pages-projects-list.html">List</a>
-									</li>
-									<li class="sidebar-item">
-										<a class="sidebar-link" href="pages-projects-detail.html">Detail <span class="badge badge-sidebar-primary">New</span></a>
-									</li>
-								</ul>
-							</li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-invoice.html">Invoice</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-pricing.html">Pricing</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-tasks.html">Tasks</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-chat.html">Chat <span class="badge badge-sidebar-primary">New</span></a></li>
-							<li class="sidebar-item active"><a class="sidebar-link" href="pages-blank.html">Blank Page</a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#auth" data-bs-toggle="collapse" class="sidebar-link collapsed">
-              <i class="align-middle" data-feather="users"></i> <span class="align-middle">Auth</span>
-              <span class="badge badge-sidebar-secondary">Special</span>
-            </a>
-						<ul id="auth" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-sign-in.html">Sign In</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-sign-up.html">Sign Up</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-reset-password.html">Reset Password</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-404.html">404 Page</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-500.html">500 Page</a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#documentation" data-bs-toggle="collapse" class="sidebar-link collapsed">
-              <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Documentation</span>
-            </a>
-						<ul id="documentation" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="docs-introduction.html">Introduction</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="docs-installation.html">Getting Started</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="docs-customization.html">Customization</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="docs-plugins.html">Plugins</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="docs-changelog.html">Changelog</a></li>
-						</ul>
+                            <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboards</span>
+                            <span class="badge badge-sidebar-primary">5</span>
+                        </a>
 					</li>
 
 					<li class="sidebar-header">
 						Tools & Components
 					</li>
 					<li class="sidebar-item">
-						<a data-bs-target="#ui" data-bs-toggle="collapse" class="sidebar-link collapsed">
-              <i class="align-middle" data-feather="grid"></i> <span class="align-middle">UI Elements</span>
-            </a>
-						<ul id="ui" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-alerts.html">Alerts</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-buttons.html">Buttons</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-cards.html">Cards</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-carousel.html">Carousel</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-embed-video.html">Embed Video</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-general.html">General <span class="badge badge-sidebar-primary">10+</span></a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-grid.html">Grid</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-modals.html">Modals</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-offcanvas.html">Offcanvas</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-placeholders.html">Placeholders</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-tabs.html">Tabs</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="ui-typography.html">Typography</a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#icons" data-bs-toggle="collapse" class="sidebar-link collapsed">
-              <i class="align-middle" data-feather="heart"></i> <span class="align-middle">Icons</span>
-              <span class="badge badge-sidebar-primary">1500+</span>
-            </a>
-						<ul id="icons" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="icons-feather.html">Feather</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="icons-font-awesome.html">Font Awesome</a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item">
-						<a data-bs-target="#forms" data-bs-toggle="collapse" class="sidebar-link collapsed">
-              <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Forms</span>
-            </a>
-						<ul id="forms" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="forms-layouts.html">Layouts</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="forms-basic-inputs.html">Basic Inputs</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="forms-input-groups.html">Input Groups</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="forms-floating-labels.html">Floating Labels</a></li>
-						</ul>
-					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="tables-bootstrap.html">
-                            <i class="align-middle" data-feather="list"></i> <span class="align-middle">Tables</span>
+						<a class="sidebar-link" href="">
+                            <i class="align-middle" data-feather="list"></i> <span class="align-middle">Items</span>
                         </a>
 					</li>
 					<li class="sidebar-header">
@@ -167,8 +67,8 @@
                             <i class="align-middle" data-feather="bell"></i> <span class="align-middle">Class Group</span>
                         </a>
 					</li>
-                    <li class="sidebar-item">
-						<a class="sidebar-link" href="">
+                    <li class="sidebar-item @yield('classification')">
+						<a class="sidebar-link" href="{{ route('user.classification') }}">
                             <i class="align-middle" data-feather="bell"></i> <span class="align-middle">Classification</span>
                         </a>
 					</li>

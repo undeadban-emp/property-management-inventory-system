@@ -11,4 +11,8 @@ class ClassGroup extends Model
     protected $fillable = [
         'description',
     ];
+    public function classification()
+    {
+        return $this->hasOne(Classification::class, 'classgroup_id', 'id');
+    }
 }
