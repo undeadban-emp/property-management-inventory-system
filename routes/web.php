@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\User\AccountController;
 use App\Http\Controllers\User\ItemsController;
 use App\Http\Controllers\User\ClassGroupController;
 use App\Http\Controllers\User\UserDashboardController;
@@ -51,4 +52,11 @@ Route::middleware(['auth', 'user-role:user'])->prefix('user')->group(function()
     Route::post("/items/update", [ItemsController::class, 'update'])->name('user.items.update');
     Route::delete("/items/destroy/{id}", [ItemsController::class, 'destroy'])->name('user.items.destroy');
 
+    // account
+    Route::get("/account", [AccountController::class, 'index'])->name('user.account');
+    Route::post("/account/create", [AccountController::class, 'store'])->name('user.account.create');
+    Route::get("/account/list", [AccountController::class, 'list'])->name('user.account.list');
+    Route::post("/account/update", [AccountController::class, 'update'])->name('user.account.update');
+    Route::post("/account/reset-password", [AccountController::class, 'reset'])->name('user.account.reset');
+    Route::delete("/account/destroy/{id}", [AccountController::class, 'destroy'])->name('user.account.destroy');
 });

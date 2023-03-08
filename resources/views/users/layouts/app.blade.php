@@ -73,6 +73,11 @@
                             <i class="align-middle" data-feather="bell"></i> <span class="align-middle">Classification</span>
                         </a>
 					</li>
+                    <li class="sidebar-item @yield('newAccount')">
+						<a class="sidebar-link" href="{{ route('user.account') }}">
+                            <i class="align-middle" data-feather="user"></i> <span class="align-middle">Accounts</span>
+                        </a>
+					</li>
 				</ul>
 			</div>
 		</nav>
