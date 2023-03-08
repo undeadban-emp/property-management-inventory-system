@@ -54,13 +54,14 @@
 					<li class="sidebar-header">
 						Tools & Components
 					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="">
-                            <i class="align-middle" data-feather="list"></i> <span class="align-middle">Items</span>
-                        </a>
-					</li>
+
 					<li class="sidebar-header">
 						Settings & Maintenance
+					</li>
+                    <li class="sidebar-item  @yield('items')">
+						<a class="sidebar-link" href="{{ route('user.items') }}">
+                            <i class="align-middle" data-feather="list"></i> <span class="align-middle">Items</span>
+                        </a>
 					</li>
 					<li class="sidebar-item @yield('classGroup')">
 						<a class="sidebar-link" href="{{ route('user.class-group') }}">

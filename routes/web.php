@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\User\ItemsController;
 use App\Http\Controllers\User\ClassGroupController;
 use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\user\ClassificationController;
@@ -42,4 +43,12 @@ Route::middleware(['auth', 'user-role:user'])->prefix('user')->group(function()
     Route::get("/classification/list", [ClassificationController::class, 'list'])->name('user.classification.list');
     Route::post("/classification/update", [ClassificationController::class, 'update'])->name('user.classification.update');
     Route::delete("/classification/destroy/{id}", [ClassificationController::class, 'destroy'])->name('user.classification.destroy');
+
+    // items
+    Route::get("/items", [ItemsController::class, 'index'])->name('user.items');
+    Route::post("/items/create", [ItemsController::class, 'store'])->name('user.items.create');
+    Route::get("/items/list", [ItemsController::class, 'list'])->name('user.items.list');
+    Route::post("/items/update", [ItemsController::class, 'update'])->name('user.items.update');
+    Route::delete("/items/destroy/{id}", [ItemsController::class, 'destroy'])->name('user.items.destroy');
+
 });

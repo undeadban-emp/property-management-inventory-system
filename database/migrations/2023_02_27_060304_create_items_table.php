@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->integer('item_no');
+            $table->string('item_no', 50);
             $table->string('description');
             $table->string('unit');
             $table->string('model_no');
             $table->string('serial_no');
             $table->string('brand');
             $table->date('acquisition_date');
-            $table->integer('acquisition_cost');
-            $table->string('market_appraisal');
+            $table->decimal('acquisition_cost');
+            $table->decimal('market_appraisal');
             $table->date('appraisal_date');
             $table->string('remarks');
             $table->foreignId('class_id');
