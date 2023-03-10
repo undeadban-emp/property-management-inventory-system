@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Classification extends Model
+class InventoryCustodianItem extends Model
 {
     protected $connection = 'PROPERTY_MANAGEMENT_INVENTORY_CONNECTION';
     use HasFactory;
     protected $fillable = [
-        'description',
-        'classgroup_id',
+        'ic_id',
+        'item_id',
+        'quantity',
+        'unit',
+        'unit_cost',
+        'unit_total_cost',
+        'est_useful_life',
     ];
-
-    public function classGroup()
-    {
-        return $this->hasOne(ClassGroup::class, 'id', 'classgroup_id');
-    }
 }

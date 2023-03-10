@@ -8,6 +8,7 @@ use App\Http\Controllers\User\ItemsController;
 use App\Http\Controllers\User\ClassGroupController;
 use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\user\ClassificationController;
+use App\Http\Controllers\User\InventoryCustodianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,4 +60,8 @@ Route::middleware(['auth', 'user-role:user'])->prefix('user')->group(function()
     Route::post("/account/update", [AccountController::class, 'update'])->name('user.account.update');
     Route::post("/account/reset-password", [AccountController::class, 'reset'])->name('user.account.reset');
     Route::delete("/account/destroy/{id}", [AccountController::class, 'destroy'])->name('user.account.destroy');
+
+    // account
+    Route::get("/inventor-custodian", [InventoryCustodianController::class, 'index'])->name('user.inventory-custodian.index');
+    Route::get("/inventor-custodian/create", [InventoryCustodianController::class, 'create'])->name('user.inventory-custodian.create');
 });

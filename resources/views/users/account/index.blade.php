@@ -6,7 +6,7 @@
 @section('content')
     <div class="container-fluid p-0">
 
-        <h1 class="h3 mb-3">Add New Account</h1>
+        <h1 class="h3 mb-3">Accounts</h1>
 
         <div class="row">
             <div class="col-12 col-lg-12">

@@ -13,6 +13,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    protected $connection = 'PROPERTY_MANAGEMENT_INVENTORY_CONNECTION';
+
     use HasApiTokens, HasFactory, Notifiable;
 
     /**

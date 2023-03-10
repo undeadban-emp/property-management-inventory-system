@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
+    protected $connection = 'PROPERTY_MANAGEMENT_INVENTORY_CONNECTION';
     use HasFactory;
     protected $fillable = [
        'item_no',

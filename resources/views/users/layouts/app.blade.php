@@ -52,7 +52,12 @@
 					</li>
 
 					<li class="sidebar-header">
-						Tools & Components
+						Modules
+					</li>
+                    <li class="sidebar-item  @yield('inventoryCustodian')">
+						<a class="sidebar-link" href="{{ route('user.inventory-custodian.index') }}">
+                            <i class="align-middle" data-feather="list"></i> <span class="align-middle">Inventory Custodian</span>
+                        </a>
 					</li>
 
 					<li class="sidebar-header">

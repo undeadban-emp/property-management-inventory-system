@@ -31,8 +31,8 @@
                                         <form class="formAction" id="classGroupForm">
                                             @csrf
                                             <div class="modal-body">
-                                                <label id="labelId" class="form-label float-start">Id</label>
-                                                <input type="text" class="form-control" id="id" name="id" placeholder="">
+                                                <label id="labelId" class="form-label d-none float-start">Id</label>
+                                                <input type="text" class="form-control d-none" id="id" name="id" placeholder="">
 
                                                 <div class="row">
                                                     <div class="col-12 col-md-2 col-lg-2">

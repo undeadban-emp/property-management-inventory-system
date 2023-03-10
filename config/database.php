@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'sqlsrv'),
+    'default' => env('DB_CONNECTION', 'PROPERTY_MANAGEMENT_INVENTORY_CONNECTION'),
 
     /*
     |--------------------------------------------------------------------------
@@ -89,10 +89,34 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
-            // 'encrypt' => env('DB_ENCRYPT', 'yes'),
-            // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
+        // local connection
+        'DTR_PAYROLL_CONNECTION' => [
+            'driver' => 'sqlsrv',
+            'url' => '',
+            'host' => '.',
+            'port' => '',
+            'database' => 'DTRPayroll',
+            'username' => 'sa',
+            'password' => 'nicole',
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
+
+        'PROPERTY_MANAGEMENT_INVENTORY_CONNECTION' => [
+            'driver' => 'sqlsrv',
+            'url' => '',
+            'host' => '.',
+            'port' => '',
+            'database' => 'PMIS',
+            'username' => 'sa',
+            'password' => 'nicole',
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
     ],
 
     /*

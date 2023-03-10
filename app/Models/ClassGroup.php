@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class ClassGroup extends Model
 {
+    protected $connection = 'PROPERTY_MANAGEMENT_INVENTORY_CONNECTION';
+
     use HasFactory;
+
     protected $fillable = [
         'description',
     ];
