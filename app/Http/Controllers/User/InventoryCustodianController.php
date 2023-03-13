@@ -9,6 +9,7 @@ use App\Models\InventoryCustodian;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\InventoryCustodianItem;
+use Yajra\DataTables\Facades\DataTables;
 
 class InventoryCustodianController extends Controller
 {
@@ -20,6 +21,28 @@ class InventoryCustodianController extends Controller
     public function index()
     {
         return view('users.inventory-custodian.index');
+    }
+
+    public function list()
+    {
+        if (request()->ajax()) {
+
+            $data = DB::connection('PROPERTY_MANAGEMENT_INVENTORY_CONNECTION')
+            ->table('inventory_custodians')
+            ->join('DTRPayroll.dbo.Office', 'inventory_custodians.office_code', '=', 'Office.OfficeCode')
+            ->get();
+            return DataTables::of($data)
+            ->addColumn('office', function ($row) {
+                return $row->Description;
+            })
+            ->addColumn('action', function ($row) {
+                $btn = "<button value='$row->id' class='btnEdit btn btn-success'><span class='align middle fas fa-edit'></span></button>&nbsp;&nbsp;";
+                $btn .= "<button value='$row->id' class='btnDelete btn btn-danger'><span class='align middle fas fa-trash'></span></button>";
+                return $btn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+        }
     }
 
     /**

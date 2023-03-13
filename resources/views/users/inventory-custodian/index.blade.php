@@ -23,20 +23,16 @@
                             </div>
                         </div>
 
-                        <table id="class-group-table" class="table table-striped" style="width:100%">
+                        <table id="inventory-custodian-table" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Description</th>
+                                    <th>Office</th>
+                                    <th>ICS No</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                         </table>
-
-
-
-
-
                     </div>
                 </div>
             </div>
@@ -45,45 +41,46 @@
 @push('page-scripts')
 <script>
 
-    $(document).on("click", ".btnDelete", function() {
-        let id = this.value;
-        swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this Data!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-            })
-            .then((willDelete) => {
-            if (willDelete) {
-                    $.ajax({
-                        url: `/user/class-group/destroy/${id}`,
-                        type: "delete",
-                        data: {
-                            _token: '{{ csrf_token() }}'
-                            },
-                            success: function(result) {
-                                if (result.success == true) {
-                                    $('#class-group-table').DataTable().ajax.reload();
-                                    swal("Successfully Deleted!", "", "success");
-                                }
-                        }
-                    });
-            } else {
-                swal("Your Data is safe!");
-            }
-        });
-  });
+//     $(document).on("click", ".btnDelete", function() {
+//         let id = this.value;
+//         swal({
+//             title: "Are you sure?",
+//             text: "Once deleted, you will not be able to recover this Data!",
+//             icon: "warning",
+//             buttons: true,
+//             dangerMode: true,
+//             })
+//             .then((willDelete) => {
+//             if (willDelete) {
+//                     $.ajax({
+//                         url: `/user/class-group/destroy/${id}`,
+//                         type: "delete",
+//                         data: {
+//                             _token: '{{ csrf_token() }}'
+//                             },
+//                             success: function(result) {
+//                                 if (result.success == true) {
+//                                     $('#class-group-table').DataTable().ajax.reload();
+//                                     swal("Successfully Deleted!", "", "success");
+//                                 }
+//                         }
+//                     });
+//             } else {
+//                 swal("Your Data is safe!");
+//             }
+//         });
+//   });
 
     document.addEventListener("DOMContentLoaded", function() {
-        $("#class-group-table").DataTable({
+        $("#inventory-custodian-table").DataTable({
             responsive: true,
             serverSide: true,
             "order": [ 0, 'desc' ],
-            ajax: `{{ route('user.class-group.list') }}`,
+            ajax: `{{ route('user.inventory-custodian.list') }}`,
             columns: [
                 { data: "id", name: "id" },
-                { data: "description", name: "description" },
+                { data: "office", name: "office" },
+                { data: "ics_no", name: "ics_no" },
                 { data: "action", name: "action" },
             ],
         });

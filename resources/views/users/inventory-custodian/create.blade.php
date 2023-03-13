@@ -15,7 +15,11 @@
                         <form class="formAction" id="inventoryCustodianForm">
 
                             <div class="row pb-3">
-
+                                <div class="col-12 col-md-12 col-lg-12 text-end">
+                                    <a href="{{ route('user.inventory-custodian.index') }}"><button type="button" class="btn btn-secondary">
+                                        View List
+                                    </button></a>
+                                </div>
                                     <div class="col-12 col-md-4 col-lg-4">
                                         <h6 class="card-subtitle text-muted pt-4 pb-2">Office</h6>
                                             <select class="form-control select2" id="offices" name="offices" data-toggle="select2">
@@ -179,6 +183,9 @@
 
                         <div class="row pt-5">
                             <div class="col-12 col-md-12 col-lg-12 text-end">
+                                <button id="cancel" type="button" class="btn btn-secondary">
+                                    Cancel
+                                </button>
                                 <button id="submit" type="submit" class="btn btn-success">
                                     Submit
                                 </button>
@@ -284,6 +291,74 @@
             "#estUsefulLife",
         ];
 
+        $("#cancel").click(function (e) {
+                 swal({
+                    title: "Are you sure?",
+                    text: "Once cancel, you will not be able to recover all data!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willCancel) => {
+                    if (willCancel) {
+                        // remove value in parent
+                        $.each(inputParent, function (index, value) {
+                            $(`${value}`).val('');
+                        });
+                        $.each(selectParent, function (index, value) {
+                            $(`${value}`).val("Please Select").trigger("change");
+                        });
+                        // remove error class parent
+                        $.each(errorParent, function (propertyName, errorParent) {
+                            $.each(errorParent, function (errorClass, errorMessage) {
+                                if(`${errorClass}` == "#offices" || `${errorClass}` == "#receivedFrom" || `${errorClass}` == "#receiveFromPosition" || `${errorClass}` == "#receiveBy" || `${errorClass}` == "#receiveByPosition"){
+                                    if($(`${errorClass}`).val() == null){
+                                        $(`${errorClass}`).removeClass('is-invalid');
+                                        $(`${errorMessage}`).addClass('d-none');
+                                    }else{
+                                        $(`${errorClass}`).removeClass('is-invalid');
+                                        $(`${errorMessage}`).addClass('d-none');
+                                    }
+                                }else{
+                                    if($(`${errorClass}`).val() == ''){
+                                        $(`${errorClass}`).removeClass('is-invalid');
+                                        $(`${errorMessage}`).addClass('d-none');
+                                    }else{
+                                        $(`${errorClass}`).removeClass('is-invalid');
+                                        $(`${errorMessage}`).addClass('d-none');
+                                    }
+                                }
+                            });
+                        });
+                        // remove value child
+                        $('#item').val('Please Select').trigger('change');
+                        $('#quantity').val('');
+                        $('#unit').val('');
+                        $('#unitCost').val('');
+                        $('#unitTotalCost').val('');
+                        $('#estUsefulLife').val('');
+                        // remove error class child
+                        $.each(errorChild, function (propertyName, errorChild) {
+                            $.each(errorChild, function (errorClass, errorMessage) {
+                                if(`${errorClass}` == "#item"){
+                                    if($('#item').val() != 'Please Select'){
+                                        $('#item').removeClass('is-invalid');
+                                        $('#item-error-message').addClass('d-none');
+                                    }
+                                }else{
+                                    if($(`${errorClass}`).val() != ''){
+                                        $(`${errorClass}`).removeClass('is-invalid');
+                                        $(`${errorMessage}`).addClass('d-none');
+                                    }
+                                }
+                            });
+                        });
+                        $('.childAddedRow').remove();
+                        window.localStorage.clear();
+                    }
+                });
+        });
+
 
         $("#receivedFrom").change(function (e) {
             let data = $(this).find("option:selected").attr("position");
@@ -313,7 +388,7 @@
             }
         });
 
-        $("#quantity").keyup(function (e) {
+        $("#quantity,#unitCost").keyup(function (e) {
             let unitCost = $('#unitCost').val();
             let quantity = $('#quantity').val();
             let totalCost = unitCost * quantity;
@@ -370,6 +445,28 @@
                     });
                 });
             }else{
+                // remove error in parent
+                $.each(errorParent, function (propertyName, errorParent) {
+                    $.each(errorParent, function (errorClass, errorMessage) {
+                        if(`${errorClass}` == "#offices" || `${errorClass}` == "#receivedFrom" || `${errorClass}` == "#receiveFromPosition" || `${errorClass}` == "#receiveBy" || `${errorClass}` == "#receiveByPosition"){
+                            if($(`${errorClass}`).val() == null){
+                                $(`${errorClass}`).removeClass('is-invalid');
+                                $(`${errorMessage}`).addClass('d-none');
+                            }else{
+                                $(`${errorClass}`).removeClass('is-invalid');
+                                $(`${errorMessage}`).addClass('d-none');
+                            }
+                        }else{
+                            if($(`${errorClass}`).val() == ''){
+                                $(`${errorClass}`).removeClass('is-invalid');
+                                $(`${errorMessage}`).addClass('d-none');
+                            }else{
+                                $(`${errorClass}`).removeClass('is-invalid');
+                                $(`${errorMessage}`).addClass('d-none');
+                            }
+                        }
+                    });
+                });
                 // error message
                 $.each(errorChild, function (propertyName, errorChild) {
                     $.each(errorChild, function (errorClass, errorMessage) {
@@ -623,7 +720,7 @@
             $.each(errorParent, function (propertyName, errorParent) {
                 $.each(errorParent, function (errorClass, errorMessage) {
                     if(`${errorClass}` == "#offices" || `${errorClass}` == "#receivedFrom" || `${errorClass}` == "#receiveFromPosition" || `${errorClass}` == "#receiveBy" || `${errorClass}` == "#receiveByPosition"){
-                        if($(`${errorClass}`).val() == null){
+                        if($(`${errorClass}`).val() == 'Please Select'){
                             $(`${errorClass}`).addClass('is-invalid');
                             $(`${errorMessage}`).removeClass('d-none');
                         }else{
@@ -724,575 +821,6 @@
             }
         }
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var errorMessage = [
-//         "#item-no-error-message",
-//         "#description-error-message",
-//         "#unit-error-message",
-//         "#model-no-error-message",
-//         "#serial-no-error-message",
-//         "#brand-no-error-message",
-//         "#acquisition-date-error-message",
-//         "#acquisition-cost-error-message",
-//         "#market-appraisal-error-message",
-//         "#appraisal-date-error-message",
-//         "#remarks-error-message",
-//         "#class-error-message",
-//         "#nature-occupancy-error-message",
-//     ];
-
-//     var input = [
-//             "#itemNo",
-//             "#description",
-//             "#unit",
-//             "#modelNo",
-//             "#serialNo",
-//             "#brand",
-//             "#acquisitionDate",
-//             "#acquisitionCost",
-//             "#marketAppraisal",
-//             "#appraisalDate",
-//             "#remarks",
-//             "#class",
-//             "#natureOccupancy",
-//         ];
-
-//     var resetVal = [
-//             "#itemNo",
-//             "#description",
-//             "#unit",
-//             "#modelNo",
-//             "#serialNo",
-//             "#brand",
-//             "#acquisitionDate",
-//             "#acquisitionCost",
-//             "#marketAppraisal",
-//             "#appraisalDate",
-//             "#remarks",
-//         ];
-
-//         var resetSelect = [
-//             "#class",
-//             "#natureOccupancy",
-//         ];
-
-//     // add items
-//     $("#classGroupForm").submit(function (e) {
-//             e.preventDefault();
-//             let data = $(this).serialize();
-//             $.ajax({
-//                 type: "POST",
-//                 url: "{{ route('user.items.create') }}",
-//                 data: data,
-//                 success: function (response) {
-//                     if (response.success) {
-
-//                         $.each(errorMessage, function (index, value) {
-//                             $(`${value}`).html("");
-//                         });
-
-//                         $.each(input, function (index, value) {
-//                             $(`${value}`).removeClass("is-invalid");
-//                         });
-
-//                         $.each(resetVal, function (index, value) {
-//                             $(`${value}`).val("");
-//                         });
-
-//                         $.each(resetSelect, function (index, value) {
-//                             $(`${value}`).val("Please Select").trigger("change");
-//                         });
-
-//                         swal("Good job!", "Added Successfully", "success");
-//                         $('.modal').modal('hide');
-//                         $("#description").val("");
-//                         $('#class-group-table').DataTable().ajax.reload();
-//                         $("#description").removeClass("is-invalid");
-//                         $("#description-error-message").html("");
-//                     }
-//                 },
-//                 error: function (response){
-//                     if(response.status === 422){
-//                         let errors = response.responseJSON.errors;
-
-//                         if (errors.hasOwnProperty("itemNo")) {
-//                             $("#itemNo").addClass("is-invalid");
-//                             $("#item-no-error-message").html("");
-//                             $("#item-no-error-message").append(
-//                                 `<span>${errors.itemNo[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#itemNo").removeClass("is-invalid");
-//                             $("#item-no-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("description")) {
-//                             $("#description").addClass("is-invalid");
-//                             $("#description-error-message").html("");
-//                             $("#description-error-message").append(
-//                                 `<span>${errors.description[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#description").removeClass("is-invalid");
-//                             $("#description-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("unit")) {
-//                             $("#unit").addClass("is-invalid");
-//                             $("#unit-error-message").html("");
-//                             $("#unit-error-message").append(
-//                                 `<span>${errors.unit[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#unit").removeClass("is-invalid");
-//                             $("#unit-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("modelNo")) {
-//                             $("#modelNo").addClass("is-invalid");
-//                             $("#model-no-error-message").html("");
-//                             $("#model-no-error-message").append(
-//                                 `<span>${errors.modelNo[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#modelNo").removeClass("is-invalid");
-//                             $("#model-no-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("serialNo")) {
-//                             $("#serialNo").addClass("is-invalid");
-//                             $("#serial-no-error-message").html("");
-//                             $("#serial-no-error-message").append(
-//                                 `<span>${errors.serialNo[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#serialNo").removeClass("is-invalid");
-//                             $("#serial-no-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("brand")) {
-//                             $("#brand").addClass("is-invalid");
-//                             $("#brand-no-error-message").html("");
-//                             $("#brand-no-error-message").append(
-//                                 `<span>${errors.brand[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#brand").removeClass("is-invalid");
-//                             $("#brand-no-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("acquisitionDate")) {
-//                             $("#acquisitionDate").addClass("is-invalid");
-//                             $("#acquisition-date-error-message").html("");
-//                             $("#acquisition-date-error-message").append(
-//                                 `<span>${errors.acquisitionDate[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#acquisitionDate").removeClass("is-invalid");
-//                             $("#acquisition-date-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("acquisitionCost")) {
-//                             $("#acquisitionCost").addClass("is-invalid");
-//                             $("#acquisition-cost-error-message").html("");
-//                             $("#acquisition-cost-error-message").append(
-//                                 `<span>${errors.acquisitionCost[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#acquisitionCost").removeClass("is-invalid");
-//                             $("#acquisition-cost-error-message").html("");
-//                         }
-
-
-//                         if (errors.hasOwnProperty("marketAppraisal")) {
-//                             $("#marketAppraisal").addClass("is-invalid");
-//                             $("#market-appraisal-error-message").html("");
-//                             $("#market-appraisal-error-message").append(
-//                                 `<span>${errors.marketAppraisal[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#marketAppraisal").removeClass("is-invalid");
-//                             $("#market-appraisal-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("appraisalDate")) {
-//                             $("#appraisalDate").addClass("is-invalid");
-//                             $("#appraisal-date-error-message").html("");
-//                             $("#appraisal-date-error-message").append(
-//                                 `<span>${errors.appraisalDate[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#appraisalDate").removeClass("is-invalid");
-//                             $("#appraisal-date-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("remarks")) {
-//                             $("#remarks").addClass("is-invalid");
-//                             $("#remarks-error-message").html("");
-//                             $("#remarks-error-message").append(
-//                                 `<span>${errors.remarks[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#remarks").removeClass("is-invalid");
-//                             $("#remarks-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("class")) {
-//                             $("#class").addClass("is-invalid");
-//                             $("#class-error-message").html("");
-//                             $("#class-error-message").append(
-//                                 `<span>${errors.class[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#class").removeClass("is-invalid");
-//                             $("#class-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("natureOccupancy")) {
-//                             $("#natureOccupancy").addClass("is-invalid");
-//                             $("#nature-occupancy-error-message").html("");
-//                             $("#nature-occupancy-error-message").append(
-//                                 `<span>${errors.natureOccupancy[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#natureOccupancy").removeClass("is-invalid");
-//                             $("#nature-occupancy-error-message").html("");
-//                         }
-
-//                     }
-
-//                 }
-//             });
-//     });
-
-//     $(document).on("click", ".btnEdit", function(e) {
-//         let data = this.value;
-//         let datas = JSON.parse(data);
-//         $('.modal').modal('show');
-//         $("#id").val(datas.id);
-//         $("#itemNo").val(datas.item_no);
-//         $("#description").val(datas.description);
-//         $("#unit").val(datas.unit);
-//         $("#modelNo").val(datas.model_no);
-//         $("#serialNo").val(datas.serial_no);
-//         $("#brand").val(datas.brand);
-//         $("#acquisitionDate").val(datas.acquisition_date);
-//         $("#acquisitionCost").val(datas.acquisition_cost);
-//         $("#marketAppraisal").val(datas.market_appraisal);
-//         $("#appraisalDate").val(datas.appraisal_date);
-//         $("#remarks").val(datas.remarks);
-//         $('#class').val(datas.class_id).trigger('change');
-//         $('#natureOccupancy').val(datas.nature_occupancy).trigger('change');
-//         $("#labelId").addClass('d-none');
-//         $("#id").addClass('d-none');
-//         $("#btnUpdate").removeClass('d-none');
-//         $("#btnCreate").addClass('d-none');
-//         $("#staticBackdropLabel").html("Edit Class Group");
-//     });
-
-//     $(document).on("click", "#btnClose", function(e) {
-//         $.each(errorMessage, function (index, value) {
-//             $(`${value}`).html("");
-//         });
-//         $.each(input, function (index, value) {
-//             $(`${value}`).removeClass("is-invalid");
-//         });
-//         $.each(resetVal, function (index, value) {
-//             $(`${value}`).val("");
-//         });
-//         $.each(resetSelect, function (index, value) {
-//             $(`${value}`).val("Please Select").trigger("change");
-//         });
-//         $('.modal').modal('show');
-//         $("#id").val('');
-//         $("#btnUpdate").addClass('d-none');
-//         $("#btnCreate").removeClass('d-none');
-//         $("#labelId").addClass('d-none');
-//         $("#id").addClass('d-none');
-//         $("#staticBackdropLabel").html("Items");
-//     });
-
-//     $(document).on("click", ".btnDelete", function() {
-//         let id = this.value;
-//         swal({
-//             title: "Are you sure?",
-//             text: "Once deleted, you will not be able to recover this Data!",
-//             icon: "warning",
-//             buttons: true,
-//             dangerMode: true,
-//             })
-//             .then((willDelete) => {
-//             if (willDelete) {
-//                     $.ajax({
-//                         url: `/user/items/destroy/${id}`,
-//                         type: "delete",
-//                         data: {
-//                             _token: '{{ csrf_token() }}'
-//                             },
-//                             success: function(result) {
-//                                 if (result.success == true) {
-//                                     $('#items-table').DataTable().ajax.reload();
-//                                     swal("Successfully Deleted!", "", "success");
-//                                 }
-//                             },
-//                     });
-//             } else {
-//                 swal("Your Data is safe!");
-//             }
-//         });
-//   });
-
-//   $("#classGroupEditForm").submit(function (e) {
-//     e.preventDefault();
-//     alert('edit');
-//   });
-
-//   $(document).on("click", "#btnUpdate", function() {
-//         $.ajax({
-//             url: `{{ route('user.items.update') }}`,
-//             type: "post",
-//             data: {
-//                     id : $('#id').val(),
-//                     itemNo : $('#itemNo').val(),
-//                     description : $('#description').val(),
-//                     unit : $('#unit').val(),
-//                     modelNo : $('#modelNo').val(),
-//                     serialNo : $('#serialNo').val(),
-//                     brand : $('#brand').val(),
-//                     acquisitionDate : $('#acquisitionDate').val(),
-//                     acquisitionCost : $('#acquisitionCost').val(),
-//                     marketAppraisal : $('#marketAppraisal').val(),
-//                     appraisalDate : $('#appraisalDate').val(),
-//                     remarks : $('#remarks').val(),
-//                     class : $('#class').val(),
-//                     natureOccupancy : $('#natureOccupancy').val(),
-//                     _token: '{{ csrf_token() }}'
-//                   },
-//                 success: function(result) {
-//                     if (result.success == true) {
-//                         $.each(errorMessage, function (index, value) {
-//                             $(`${value}`).html("");
-//                         });
-//                         $.each(input, function (index, value) {
-//                             $(`${value}`).removeClass("is-invalid");
-//                         });
-//                         $.each(resetVal, function (index, value) {
-//                             $(`${value}`).val("");
-//                         });
-//                         $.each(resetSelect, function (index, value) {
-//                             $(`${value}`).val("Please Select").trigger("change");
-//                         });
-
-//                         $('#items-table').DataTable().ajax.reload();
-//                         swal("Successfully Updated!", "", "success");
-//                         $('.modal').modal('hide');
-//                         $("#id").val("");
-//                         $("#labelId").addClass('d-none');
-//                         $("#id").addClass('d-none');
-//                         $("#staticBackdropLabel").html("Class Group");
-//                     }
-//                 },
-//                 error: function(result) {
-//                     if(result.status === 422){
-//                         let errors = result.responseJSON.errors;
-
-//                         if (errors.hasOwnProperty("itemNo")) {
-//                             $("#itemNo").addClass("is-invalid");
-//                             $("#item-no-error-message").html("");
-//                             $("#item-no-error-message").append(
-//                                 `<span>${errors.itemNo[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#itemNo").removeClass("is-invalid");
-//                             $("#item-no-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("description")) {
-//                             $("#description").addClass("is-invalid");
-//                             $("#description-error-message").html("");
-//                             $("#description-error-message").append(
-//                                 `<span>${errors.description[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#description").removeClass("is-invalid");
-//                             $("#description-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("unit")) {
-//                             $("#unit").addClass("is-invalid");
-//                             $("#unit-error-message").html("");
-//                             $("#unit-error-message").append(
-//                                 `<span>${errors.unit[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#unit").removeClass("is-invalid");
-//                             $("#unit-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("modelNo")) {
-//                             $("#modelNo").addClass("is-invalid");
-//                             $("#model-no-error-message").html("");
-//                             $("#model-no-error-message").append(
-//                                 `<span>${errors.modelNo[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#modelNo").removeClass("is-invalid");
-//                             $("#model-no-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("serialNo")) {
-//                             $("#serialNo").addClass("is-invalid");
-//                             $("#serial-no-error-message").html("");
-//                             $("#serial-no-error-message").append(
-//                                 `<span>${errors.serialNo[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#serialNo").removeClass("is-invalid");
-//                             $("#serial-no-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("brand")) {
-//                             $("#brand").addClass("is-invalid");
-//                             $("#brand-no-error-message").html("");
-//                             $("#brand-no-error-message").append(
-//                                 `<span>${errors.brand[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#brand").removeClass("is-invalid");
-//                             $("#brand-no-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("acquisitionDate")) {
-//                             $("#acquisitionDate").addClass("is-invalid");
-//                             $("#acquisition-date-error-message").html("");
-//                             $("#acquisition-date-error-message").append(
-//                                 `<span>${errors.acquisitionDate[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#acquisitionDate").removeClass("is-invalid");
-//                             $("#acquisition-date-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("acquisitionCost")) {
-//                             $("#acquisitionCost").addClass("is-invalid");
-//                             $("#acquisition-cost-error-message").html("");
-//                             $("#acquisition-cost-error-message").append(
-//                                 `<span>${errors.acquisitionCost[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#acquisitionCost").removeClass("is-invalid");
-//                             $("#acquisition-cost-error-message").html("");
-//                         }
-
-
-//                         if (errors.hasOwnProperty("marketAppraisal")) {
-//                             $("#marketAppraisal").addClass("is-invalid");
-//                             $("#market-appraisal-error-message").html("");
-//                             $("#market-appraisal-error-message").append(
-//                                 `<span>${errors.marketAppraisal[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#marketAppraisal").removeClass("is-invalid");
-//                             $("#market-appraisal-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("appraisalDate")) {
-//                             $("#appraisalDate").addClass("is-invalid");
-//                             $("#appraisal-date-error-message").html("");
-//                             $("#appraisal-date-error-message").append(
-//                                 `<span>${errors.appraisalDate[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#appraisalDate").removeClass("is-invalid");
-//                             $("#appraisal-date-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("remarks")) {
-//                             $("#remarks").addClass("is-invalid");
-//                             $("#remarks-error-message").html("");
-//                             $("#remarks-error-message").append(
-//                                 `<span>${errors.remarks[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#remarks").removeClass("is-invalid");
-//                             $("#remarks-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("class")) {
-//                             $("#class").addClass("is-invalid");
-//                             $("#class-error-message").html("");
-//                             $("#class-error-message").append(
-//                                 `<span>${errors.class[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#class").removeClass("is-invalid");
-//                             $("#class-error-message").html("");
-//                         }
-
-//                         if (errors.hasOwnProperty("natureOccupancy")) {
-//                             $("#natureOccupancy").addClass("is-invalid");
-//                             $("#nature-occupancy-error-message").html("");
-//                             $("#nature-occupancy-error-message").append(
-//                                 `<span>${errors.natureOccupancy[0]}</span>`
-//                             );
-//                         } else {
-//                             $("#natureOccupancy").removeClass("is-invalid");
-//                             $("#nature-occupancy-error-message").html("");
-//                         }
-//                     }
-//                 }
-//         });
-//   });
-
 
 </script>
 
