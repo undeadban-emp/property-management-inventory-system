@@ -19,8 +19,8 @@ return new class extends Migration
             $table->integer('item_id');
             $table->integer('quantity');
             $table->string('unit');
-            $table->decimal('unit_cost');
-            $table->decimal('unit_total_cost');
+            $table->decimal('unit_cost', 18, 2);
+            $table->decimal('unit_total_cost', 18, 2);
             $table->string('est_useful_life');
             $table->timestamps();
         });

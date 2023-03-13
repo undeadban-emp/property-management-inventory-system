@@ -64,4 +64,5 @@ Route::middleware(['auth', 'user-role:user'])->prefix('user')->group(function()
     // account
     Route::get("/inventor-custodian", [InventoryCustodianController::class, 'index'])->name('user.inventory-custodian.index');
     Route::get("/inventor-custodian/create", [InventoryCustodianController::class, 'create'])->name('user.inventory-custodian.create');
+    Route::post("/inventor-custodian/store", [InventoryCustodianController::class, 'store'])->name('user.inventory-custodian.store');
 });

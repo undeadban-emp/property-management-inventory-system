@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\User;
 
+use Throwable;
 use App\Models\Item;
 use Illuminate\Http\Request;
+use App\Models\InventoryCustodian;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\InventoryCustodianItem;
 
 class InventoryCustodianController extends Controller
 {
@@ -52,7 +55,38 @@ class InventoryCustodianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $parentArrayData = explode('|', $request->parentData);
+            $inventoryCustodian = InventoryCustodian::create([
+                'office_code' => $parentArrayData[0],
+                'fund_id' => $parentArrayData[1],
+                'ics_no' => $parentArrayData[2],
+                'received_from' => $parentArrayData[3],
+                'received_from_pos' => $parentArrayData[4],
+                'received_from_date' => $parentArrayData[5],
+                'received_by' => $parentArrayData[6],
+                'received_by_pos' => $parentArrayData[7],
+                'received_by_date' => $parentArrayData[8],
+            ]);
+
+            $childArrayData = explode('~~', $request->childDatas);
+            foreach($childArrayData as $childArrayDatas){
+                $childArrayDataStore = explode('|', $childArrayDatas);
+                InventoryCustodianItem::create([
+                    'ic_id' => $inventoryCustodian->id,
+                    'item_id' => $childArrayDataStore[0],
+                    'quantity' => $childArrayDataStore[2],
+                    'unit' => $childArrayDataStore[3],
+                    'unit_cost' => $childArrayDataStore[4],
+                    'unit_total_cost' => $childArrayDataStore[5],
+                    'est_useful_life' => $childArrayDataStore[6],
+                ]);
+            }
+            return response()->json(['success' => true]);
+        } catch (Throwable $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage(), 'id' => $inventoryCustodian->id]);
+        }
+
     }
 
     /**
